@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить фильм</title>
+</head>
+
+<body>
+    <header>
+        <h1>Add film</h1>
+        <hr>
+    </header>
+    <a href="/">Go main</a>
+    <main>
+
+        <form action="/add_film" method="post">
+            <!-- input -- поле ввода -->
+            <!-- label -- подпись поля ввода -->
+            <!-- button -- кнопка -->
+
+            <label for="titleInput">Title film:</label>
+            <input type="text" name="titleFilm" id="titleInput">
+
+            <br>
+
+            <label for="yearInput">Year film:</label>
+            <input type="number" name="yearFilm" id="yearInput">
+
+            <br>
+            <br>
+            
+            <label for="genersInput">Geners film:</label>
+            <input type="text" name="genersFilm" id="genersInput">
+            
+            <br>
+            
+            <label for="ratingInput">Rating film:</label>
+            <input type="text" name="ratingFilm" id="ratingFilm">
+            
+            <br>
+            <br>
+            
+            <label for="posterInput">Poster film:</label>
+            <input type="url" name="posterFilm" id="posterInput">
+            
+            <br>
+            <br>
+            
+            <label for="dataInput">Date film:</label>
+            <input type="date" name="dataFilm" id="dataInput">
+            
+            <br>
+            <br>
+            
+            <label for="storylineInput">Storyline film:</label>
+            <input type="text" name="storylineFilm" id="storylineInput">
+            
+            <br>
+            <br>
+            
+            <label for="actorsInput">Actors film:</label>
+            <input type="text" name="actorsFilm" id="actorsInput">
+            
+            <br>
+
+
+
+            <button type="submit">Отправить данные на сервер</button>
+        </form>
+    </main>
+</body>
+
+</html>

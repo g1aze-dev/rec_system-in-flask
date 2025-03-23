@@ -11,8 +11,16 @@ def load_data():
     with open('data/movies01.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
     return data
+def save_cat(title: str, year: str | int, geners: str, rating: str | float | int, poster: str, date: str | int, storyline: str, actors: str) -> None:
+    films: list[dict[str, str | int | float]] = load_data()
+    films.append({
+        "title": title, "year": year, "genres": geners,
+        "rating": rating, "poster": poster, "date": date,
+        "storyline": storyline, "actors": actors
+    })
+    with open("data/movies01.json", "w", encoding="UTF-8") as output_file:
+        json.dump(films, output_file, ensure_ascii=False)
 
-# Преобразование JSON в DataFrame
 data = load_data()
 df = pd.DataFrame(data)
 
@@ -93,5 +101,21 @@ def recommend():
     else:
         return jsonify({"error": "Фильм не найден"}), 404
 
+@app.route("/add_film", methods=["GET", "POST"])
+def add_film():
+    if request.method == "GET":
+        return render_template("add_film_page.html")
+    else:
+        title: str | None = request.form.get("titleFilm")
+        year: str | None  = request.form.get("yearFilm")
+        geners: str | None = request.form.get("genersFilm")
+        rating: str | None = request.form.get("ratingFilm")
+        poster: str | None = request.form.get("posterFilm")
+        data : str | None = request.form.get("dataFilm")
+        storyline : str | None = request.form.get("storylineFilm")
+        actors : str | None = request.form.get("actorsFilm")
+        if title is not None and year is not None and geners is not None and rating is not None and poster is not None and data is not None and storyline is not None and actors is not None:
+            save_cat(title, int(year), geners, float(rating), poster, data, storyline, actors)
+        return render_template("add_film_page.html")
 if __name__ == '__main__':
     app.run(debug=True)
