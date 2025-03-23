@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <h2><a href="/recommend">Get Recommendations</a></h2>
+    <h1>Movies List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Genres</th>
+                <th>IMDb Rating</th>
+                <th>Poster</th>
+                <th>Release Date</th>
+                <th>Storyline</th>
+                <th>Actors</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+            <tr>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.year }}</td>
+                <td>{{ movie.genres | join(', ') }}</td>
+                <td>{{ movie.imdbRating }}</td>
+                <td>
+                    {% if movie.posterurl %}
+                        <img src="{{ movie.posterurl }}" alt="{{ movie.title }} poster" height="100">
+                    {% else %}
+                        <p>No poster available</p>
+                    {% endif %}
+                </td>
+                <td>{{ movie.releaseDate }}</td>
+                <td>{{ movie.storyline }}</td>
+                <td>{{ movie.actors | join(', ') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

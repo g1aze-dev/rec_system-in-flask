@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendations</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Recommendations</h1>
+    <a href="/">Return to main</a>
+    <form id="recommendationForm">
+        <label for="movie_title">Search film:</label>
+        <input type="text" id="movie_title" name="movie_title" required>
+        <button type="submit">Get recommend</button>
+    </form>
+    <h2>Reccomend:</h2>
+    <table id="recommendationsTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Avgr</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Рекомендации будут добавлены сюда -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('recommendationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const movieTitle = document.getElementById('movie_title').value;
+
+            fetch('/rec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `movie_title=${encodeURIComponent(movieTitle)}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('#recommendationsTable tbody');
+                tableBody.innerHTML = ''; // Очищаем таблицу
+
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    data.forEach(movie => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${movie.title}</td>
+                            <td>${movie.averageRating.toFixed(2)}</td>
+                            <td>${movie.year}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+        });
+    </script>
+</body>
+</html>
