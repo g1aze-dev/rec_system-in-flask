@@ -11,11 +11,11 @@ def load_data():
     with open('data/movies01.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
     return data
-def save_cat(title: str, year: str | int, geners: str, rating: str | float | int, poster: str, date: str | int, storyline: str, actors: str) -> None:
+def save_film(title: str, year: str | int, geners: str, rating: str | float | int, poster: str, date: str | int, storyline: str, actors: str) -> None:
     films: list[dict[str, str | int | float]] = load_data()
     films.append({
         "title": title, "year": year, "genres": geners,
-        "rating": rating, "poster": poster, "date": date,
+        "imdbRating": rating, "posterurl": poster, "date": date,
         "storyline": storyline, "actors": actors
     })
     with open("data/movies01.json", "w", encoding="UTF-8") as output_file:
@@ -25,7 +25,7 @@ data = load_data()
 df = pd.DataFrame(data)
 
 # Вычисление среднего рейтинга для каждого фильма
-df['averageRating'] = df['ratings'].apply(lambda x: sum(x) / len(x))
+df['averageRating'] = df["imdbRating"]
 
 # Обработка жанров с помощью MultiLabelBinarizer
 mlb = MultiLabelBinarizer()
@@ -39,7 +39,7 @@ features = ['averageRating', 'year'] + list(mlb.classes_)
 X = df[features]
 
 # Обучение модели KNN
-knn = NearestNeighbors(n_neighbors=3, metric='euclidean')
+knn = NearestNeighbors(n_neighbors=5, metric='euclidean')
 knn.fit(X)
 
 # Функция для поиска индекса фильма по названию
@@ -115,7 +115,7 @@ def add_film():
         storyline : str | None = request.form.get("storylineFilm")
         actors : str | None = request.form.get("actorsFilm")
         if title is not None and year is not None and geners is not None and rating is not None and poster is not None and data is not None and storyline is not None and actors is not None:
-            save_cat(title, int(year), geners, float(rating), poster, data, storyline, actors)
+            save_film(title, int(year), geners.strip(","), float(rating), poster, data, storyline, actors.strip(","))
         return render_template("add_film_page.html")
 if __name__ == '__main__':
     app.run(debug=True)
