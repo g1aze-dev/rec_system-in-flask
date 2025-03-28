@@ -1,0 +1,169 @@
+/* Основные стили */
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Эффект киноплёнки по краям */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: 
+        repeating-linear-gradient(to bottom, 
+            #000 0px, 
+            #000 15px, 
+            #6a0dad 15px, 
+            #6a0dad 25px,
+            #000 25px,
+            #000 40px);
+    z-index: -1;
+}
+
+body::before { left: 0; }
+body::after { right: 0; }
+
+/* Заголовки */
+h1, h2 {
+    color: #ffd700;
+    text-align: center;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 2.5em;
+    border-bottom: 2px dashed #6a0dad;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin: 30px 0 15px;
+}
+
+/* Ссылки */
+a {
+    display: inline-block;
+    color: #ffd700;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+    padding: 5px 10px;
+    border: 1px solid #6a0dad;
+    border-radius: 3px;
+}
+
+a:hover {
+    background-color: rgba(106, 13, 173, 0.3);
+    text-shadow: 0 0 5px #ffd700;
+}
+
+/* Форма */
+form {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 25px;
+    border-radius: 5px;
+    border: 1px solid #6a0dad;
+    box-shadow: 0 0 15px rgba(106, 13, 173, 0.5);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label {
+    display: block;
+    color: #ffd700;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #6a0dad;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+button {
+    background-color: #6a0dad;
+    color: #ffd700;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+button:hover {
+    background-color: #7b1fa2;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* Таблица */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #6a0dad;
+    box-shadow: 0 0 15px rgba(106, 13, 173, 0.5);
+    margin-bottom: 50px;
+}
+
+thead {
+    background-color: #6a0dad;
+    color: #ffd700;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #6a0dad;
+}
+
+th {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+tbody tr:hover {
+    background-color: rgba(106, 13, 173, 0.2);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    body::before, body::after {
+        width: 20px;
+    }
+    
+    form {
+        padding: 15px;
+    }
+    
+    th, td {
+        padding: 10px;
+    }
+}

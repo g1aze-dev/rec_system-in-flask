@@ -1,0 +1,107 @@
+/* Основные стили киноплёнки */
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 40px 60px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Перфорация по краям */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: 
+        repeating-linear-gradient(to bottom, 
+            transparent 0, 
+            transparent 18px, 
+            #333 18px, 
+            #333 22px,
+            transparent 22px,
+            transparent 40px);
+    z-index: -1;
+}
+
+body::before { left: 0; }
+body::after { right: 0; }
+
+/* Заголовок в стиле кино */
+h1 {
+    color: #f5d742;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(245, 215, 66, 0.6);
+    letter-spacing: 2px;
+    border-bottom: 2px dashed #f5d742;
+    padding-bottom: 10px;
+}
+
+/* Ссылка "На главную" */
+.back-link {
+    color: #f5d742;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    text-shadow: 0 0 5px #f5d742;
+}
+
+/* Стили формы */
+form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 12px;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #f5d742;
+    box-shadow: 0 0 15px rgba(245, 215, 66, 0.3);
+}
+
+label {
+    color: #f5d742;
+    text-align: right;
+    font-weight: bold;
+}
+
+input {
+    padding: 8px 12px;
+    background: #222;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+input:focus {
+    outline: none;
+    border-color: #f5d742;
+    box-shadow: 0 0 8px rgba(245, 215, 66, 0.4);
+}
+
+button {
+    grid-column: 1 / -1;
+    padding: 12px;
+    background: #f5d742;
+    color: #000;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+    font-family: 'Courier New', monospace;
+}
+
+button:hover {
+    background: #ffea7d;
+    box-shadow: 0 0 12px rgba(245, 215, 66, 0.7);
+}

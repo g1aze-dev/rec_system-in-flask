@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавить фильм</title>
+    <title>Add film</title>
+    <link href="/static/style.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -12,62 +14,35 @@
         <h1>Add film</h1>
         <hr>
     </header>
-    <a href="/">Go main</a>
+    <a href="/" class="back-link">← Return to main<</a>
+    
     <main>
-
         <form action="/add_film" method="post">
-            <!-- input -- поле ввода -->
-            <!-- label -- подпись поля ввода -->
-            <!-- button -- кнопка -->
-
             <label for="titleInput">Title film:</label>
-            <input type="text" name="titleFilm" id="titleInput">
+            <input type="text" name="titleFilm" id="titleInput" required>
 
-            <br>
+            <label for="yearInput">Year relase:</label>
+            <input type="number" name="yearFilm" id="yearInput" min="1888" max="2099" required>
 
-            <label for="yearInput">Year film:</label>
-            <input type="number" name="yearFilm" id="yearInput">
+            <label for="genresInput">Geners:</label>
+            <input type="text" name="genersFilm" id="genresInput" placeholder="Fantasy, Drama, Comedy">
 
-            <br>
-            <br>
-            
-            <label for="genersInput">Geners film:</label>
-            <input type="text" name="genersFilm" id="genersInput">
-            
-            <br>
-            
-            <label for="ratingInput">Rating film:</label>
-            <input type="text" name="ratingFilm" id="ratingFilm">
-            
-            <br>
-            <br>
-            
-            <label for="posterInput">Poster film:</label>
-            <input type="url" name="posterFilm" id="posterInput">
-            
-            <br>
-            <br>
-            
-            <label for="dataInput">Date film:</label>
-            <input type="date" name="dataFilm" id="dataInput">
-            
-            <br>
-            <br>
-            
-            <label for="storylineInput">Storyline film:</label>
+            <label for="ratingInput">Rating:</label>
+            <input type="number" name="ratingFilm" id="ratingInput" step="0.1" min="0" max="10" placeholder="0.0 - 10.0">
+
+            <label for="posterInput">Poster (URL):</label>
+            <input type="url" name="posterFilm" id="posterInput" placeholder="https://example.com/poster.jpg">
+
+            <label for="dateInput">Data relase:</label>
+            <input type="date" name="dataFilm" id="dateInput">
+
+            <label for="storylineInput">Storyline:</label>
             <input type="text" name="storylineFilm" id="storylineInput">
-            
-            <br>
-            <br>
-            
-            <label for="actorsInput">Actors film:</label>
-            <input type="text" name="actorsFilm" id="actorsInput">
-            
-            <br>
 
+            <label for="actorsInput">Actors:</label>
+            <input type="text" name="actorsFilm" id="actorsInput" placeholder="Actor 1, Actor 2">
 
-
-            <button type="submit">Отправить данные на сервер</button>
+            <button type="submit">Add film</button>
         </form>
     </main>
 </body>

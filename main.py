@@ -24,7 +24,7 @@ def save_film(title: str, year: str | int, geners: str, rating: str | float | in
 data = load_data()
 df = pd.DataFrame(data)
 
-# Вычисление среднего рейтинга для каждого фильма
+# Средний рейтинг для каждого фильма
 df['averageRating'] = df["imdbRating"]
 
 # Обработка жанров с помощью MultiLabelBinarizer
